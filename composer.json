@@ -1,0 +1,28 @@
+{
+	"name": "hdnet/standard",
+	"type": "composer-plugin",
+	"description" : "HDNET Code Standard",
+	"license": "GPL-2.0-or-later",
+	"autoload": {
+		"psr-4": {
+			"HDNET\\Standard\\": "src/"
+		}
+	},
+	"require": {
+		"composer-plugin-api": "^2.0",
+		"captainhook/captainhook": "^5.10",
+		"friendsofphp/php-cs-fixer": "^3.1",
+		"ramsey/conventional-commits": "^1.1",
+		"rector/rector": "^0.11",
+		"vimeo/psalm": "^4.10"
+	},
+    "require-dev": {
+        "composer/composer": "^2.0"
+    },
+    "extra": {
+        "class": "HDNET\\Standard\\Composer\\Plugin",
+        "branch-alias": {
+            "dev-master": "3.1.x-dev"
+        }
+    }
+}

@@ -1,1 +1,3 @@
-# standard
+# HDNET Code Standard
+
+tbd.

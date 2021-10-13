@@ -1,6 +1,6 @@
 <?php
 
-namespace HDNET\Standard;
+namespace HDNET\Standard\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;

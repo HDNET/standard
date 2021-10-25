@@ -89,7 +89,7 @@ class Plugin implements PluginInterface
                 throw new \RuntimeException('The classes need to be ');
             }
             $this->io->notice('Loading manifest factory '.$name);
-            $this->manifest = $manifestFactory->process($this->composer, $this->manifest);
+            $this->manifest = array_merge_recursive($this->manifest, $manifestFactory->process($this->composer, $this->manifest));
         }
     }
 

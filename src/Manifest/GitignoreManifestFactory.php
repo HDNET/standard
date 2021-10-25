@@ -10,9 +10,7 @@ class GitignoreManifestFactory implements ManifestFactoryInterface
 {
     public function process(Composer $composer, array $manifest): array
     {
-        $gitignore = $manifest['gitignore'] ?? [];
-
-        $manifest['gitignore'] = array_merge($gitignore, [
+        $manifest['gitignore'] = [
             '.DS_Store',
             '/.idea/*',
             '!/.idea/icon.svg',
@@ -31,7 +29,7 @@ class GitignoreManifestFactory implements ManifestFactoryInterface
             '/.env.local',
             '/.env.*.local',
             '/test-reports',
-        ]);
+        ];
 
         return $manifest;
     }

@@ -21,7 +21,7 @@ class ComposerScriptsConfigurator extends AbstractConfigurator
         $autoScripts = array_merge($autoScripts, $scripts);
 
         $manipulator = new JsonManipulator(file_get_contents($json->getPath()));
-        $manipulator->addSubNode('scripts', 'auto-scripts', $autoScripts);
+        $manipulator->addMainKey('scripts', $autoScripts);
 
         file_put_contents($json->getPath(), $manipulator->getContents());
     }
@@ -33,13 +33,14 @@ class ComposerScriptsConfigurator extends AbstractConfigurator
         $json = new JsonFile(Factory::getComposerFile());
 
         $jsonContents = $json->read();
-        $autoScripts = $jsonContents['scripts']['auto-scripts'] ?? [];
+        $autoScripts = $jsonContents['scripts'] ?? [];
         foreach (array_keys($scripts) as $cmd) {
-            unset($autoScripts[$cmd]);
+            // TODO: How to do this?
+            // unset($autoScripts[$cmd]);
         }
 
         $manipulator = new JsonManipulator(file_get_contents($json->getPath()));
-        $manipulator->addSubNode('scripts', 'auto-scripts', $autoScripts);
+        $manipulator->addMainKey('scripts', $autoScripts);
 
         file_put_contents($json->getPath(), $manipulator->getContents());
     }

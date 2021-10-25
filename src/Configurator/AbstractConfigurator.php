@@ -15,11 +15,6 @@ abstract class AbstractConfigurator
     /**
      * @const string
      */
-    public const ROOT_DIR = '.';
-
-    /**
-     * @const string
-     */
     protected const NAME = 'HDNET-STANDARD';
     protected Path $path;
 

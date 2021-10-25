@@ -4,8 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61a2289e01cb24a1beaa80eb88602fa9",
-    "packages": [
+    "content-hash": "d18fdf4445ab18349aec107d4106286a",
+    "packages": [],
+    "packages-dev": [
         {
             "name": "amphp/amp",
             "version": "v2.6.1",
@@ -573,16 +574,16 @@
         },
         {
             "name": "composer/semver",
-            "version": "3.2.5",
+            "version": "3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "31f3ea725711245195f62e54ffa402d8ef2fdba9"
+                "reference": "83e511e247de329283478496f7a1e114c9517506"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/31f3ea725711245195f62e54ffa402d8ef2fdba9",
-                "reference": "31f3ea725711245195f62e54ffa402d8ef2fdba9",
+                "url": "https://api.github.com/repos/composer/semver/zipball/83e511e247de329283478496f7a1e114c9517506",
+                "reference": "83e511e247de329283478496f7a1e114c9517506",
                 "shasum": ""
             },
             "require": {
@@ -634,7 +635,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/semver/issues",
-                "source": "https://github.com/composer/semver/tree/3.2.5"
+                "source": "https://github.com/composer/semver/tree/3.2.6"
             },
             "funding": [
                 {
@@ -650,7 +651,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-24T12:41:47+00:00"
+            "time": "2021-10-25T11:34:17+00:00"
         },
         {
             "name": "composer/spdx-licenses",
@@ -1176,6 +1177,91 @@
             "time": "2021-10-05T08:12:17+00:00"
         },
         {
+            "name": "hdnet/standard",
+            "version": "dev-flex-like-standard",
+            "source": {
+                "type": "git",
+                "url": "../",
+                "reference": "f0dc7a96f0a5fc5b0b284d7b2ff41f1fcc080e33"
+            },
+            "require": {
+                "captainhook/captainhook": "^5.10",
+                "composer-plugin-api": "^2.0",
+                "friendsofphp/php-cs-fixer": "^3.1",
+                "j13k/yaml-lint": "^1.1",
+                "phpstan/phpstan": "^0.12.99",
+                "ramsey/conventional-commits": "^1.1",
+                "rector/rector": "^0.11",
+                "vimeo/psalm": "^4.10"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0"
+            },
+            "default-branch": true,
+            "type": "composer-plugin",
+            "extra": {
+                "class": "HDNET\\Standard\\Composer\\Plugin",
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "HDNET\\Standard\\": "src/"
+                }
+            },
+            "scripts": {
+                "post-autoload-dump": [
+                    "@captainhook-setup"
+                ],
+                "yaml-lint": [
+                    "yaml-lint .lando.yml"
+                ],
+                "captainhook-setup": [
+                    "captainhook install --force"
+                ],
+                "phpstan": [
+                    "phpstan analyse src config --level 5"
+                ],
+                "phpstan-ci": [
+                    "@phpstan --no-interaction --no-ansi --memory-limit=2G --error-format=junit --no-progress"
+                ],
+                "php-cs-fixer": [
+                    "php-cs-fixer fix"
+                ],
+                "php-cs-fixer-ci": [
+                    "@php-cs-fixer --dry-run --no-ansi --show-progress=none --diff --format=junit"
+                ],
+                "psalm": [
+                    "psalm"
+                ],
+                "psalm-ci": [
+                    "@psalm --no-cache --no-file-cache --no-progress --memory-limit=2G --output-format=junit"
+                ],
+                "rector": [
+                    "rector"
+                ],
+                "code": [
+                    "@yaml-lint",
+                    "@rector",
+                    "@phpstan",
+                    "@php-cs-fixer",
+                    "@psalm --no-cache"
+                ],
+                "code:check": [
+                    "@yaml-lint",
+                    "@phpstan",
+                    "@php-cs-fixer --dry-run",
+                    "@psalm"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "HDNET Code Standard",
+            "time": "2021-10-25T15:05:12+00:00"
+        },
+        {
             "name": "j13k/yaml-lint",
             "version": "1.1.4",
             "source": {
@@ -1699,16 +1785,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.2.2",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556"
+                "reference": "622548b623e81ca6d78b721c5e029f4ce664f170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/069a785b2141f5bcf49f3e353548dc1cce6df556",
-                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/622548b623e81ca6d78b721c5e029f4ce664f170",
+                "reference": "622548b623e81ca6d78b721c5e029f4ce664f170",
                 "shasum": ""
             },
             "require": {
@@ -1719,7 +1805,8 @@
                 "webmozart/assert": "^1.9.1"
             },
             "require-dev": {
-                "mockery/mockery": "~1.3.2"
+                "mockery/mockery": "~1.3.2",
+                "psalm/phar": "^4.8"
             },
             "type": "library",
             "extra": {
@@ -1749,9 +1836,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/master"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.3.0"
             },
-            "time": "2020-09-03T19:13:55+00:00"
+            "time": "2021-10-19T17:43:47+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2207,16 +2294,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.11.58",
+            "version": "0.11.60",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "15a8647cf05641db35f091edf0a558ffa9619fee"
+                "reference": "428f593818f8c50fe12c543e8c0a107f9bd899ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/15a8647cf05641db35f091edf0a558ffa9619fee",
-                "reference": "15a8647cf05641db35f091edf0a558ffa9619fee",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/428f593818f8c50fe12c543e8c0a107f9bd899ae",
+                "reference": "428f593818f8c50fe12c543e8c0a107f9bd899ae",
                 "shasum": ""
             },
             "require": {
@@ -2256,7 +2343,7 @@
             "description": "Prefixed and PHP 7.1 downgraded version of rector/rector",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.11.58"
+                "source": "https://github.com/rectorphp/rector/tree/0.11.60"
             },
             "funding": [
                 {
@@ -2264,7 +2351,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-12T20:26:47+00:00"
+            "time": "2021-10-20T13:08:22+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -2390,16 +2477,16 @@
         },
         {
             "name": "sebastianfeldmann/cli",
-            "version": "3.3.3",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianfeldmann/cli.git",
-                "reference": "c4a677f229976c88cc8f50b1477ab15244a4f6d8"
+                "reference": "72f2066dd70688eb7b117840fb02a54726cc137b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianfeldmann/cli/zipball/c4a677f229976c88cc8f50b1477ab15244a4f6d8",
-                "reference": "c4a677f229976c88cc8f50b1477ab15244a4f6d8",
+                "url": "https://api.github.com/repos/sebastianfeldmann/cli/zipball/72f2066dd70688eb7b117840fb02a54726cc137b",
+                "reference": "72f2066dd70688eb7b117840fb02a54726cc137b",
                 "shasum": ""
             },
             "require": {
@@ -2436,7 +2523,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianfeldmann/cli/issues",
-                "source": "https://github.com/sebastianfeldmann/cli/tree/3.3.3"
+                "source": "https://github.com/sebastianfeldmann/cli/tree/3.4.0"
             },
             "funding": [
                 {
@@ -2444,7 +2531,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-03T16:02:45+00:00"
+            "time": "2021-10-20T19:43:50+00:00"
         },
         {
             "name": "sebastianfeldmann/git",
@@ -4143,16 +4230,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "4.10.0",
+            "version": "4.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "916b098b008f6de4543892b1e0651c1c3b92cbfa"
+                "reference": "e33492398bd4e5e2ab60e331d445979bd83feecd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/916b098b008f6de4543892b1e0651c1c3b92cbfa",
-                "reference": "916b098b008f6de4543892b1e0651c1c3b92cbfa",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/e33492398bd4e5e2ab60e331d445979bd83feecd",
+                "reference": "e33492398bd4e5e2ab60e331d445979bd83feecd",
                 "shasum": ""
             },
             "require": {
@@ -4172,7 +4259,7 @@
                 "felixfbecker/advanced-json-rpc": "^3.0.3",
                 "felixfbecker/language-server-protocol": "^1.5",
                 "netresearch/jsonmapper": "^1.0 || ^2.0 || ^3.0 || ^4.0",
-                "nikic/php-parser": "^4.12",
+                "nikic/php-parser": "^4.13",
                 "openlss/lib-array2xml": "^1.0",
                 "php": "^7.1|^8",
                 "sebastian/diff": "^3.0 || ^4.0",
@@ -4242,9 +4329,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/4.10.0"
+                "source": "https://github.com/vimeo/psalm/tree/4.11.1"
             },
-            "time": "2021-09-04T21:00:09+00:00"
+            "time": "2021-10-24T12:29:22+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4355,15 +4442,14 @@
             "time": "2015-12-17T08:42:14+00:00"
         }
     ],
-    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "hdnet/standard": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "composer-plugin-api": "^2.0"
-    },
+    "platform": [],
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a453669d2c2aaebfc331913b775b77e5",
+    "content-hash": "d18fdf4445ab18349aec107d4106286a",
     "packages": [],
     "packages-dev": [
         {
@@ -1178,16 +1178,18 @@
         },
         {
             "name": "hdnet/standard",
-            "version": "dev-main",
+            "version": "dev-flex-like-standard",
             "source": {
                 "type": "git",
                 "url": "../",
-                "reference": "5349f43eb30e1a1f4e0fb8c71993fac5fa38f8cf"
+                "reference": "85ea2ae0436f064f189213dc3a9ca2e280f2c786"
             },
             "require": {
                 "captainhook/captainhook": "^5.10",
                 "composer-plugin-api": "^2.0",
                 "friendsofphp/php-cs-fixer": "^3.1",
+                "j13k/yaml-lint": "^1.1",
+                "phpstan/phpstan": "^0.12.99",
                 "ramsey/conventional-commits": "^1.1",
                 "rector/rector": "^0.11",
                 "vimeo/psalm": "^4.10"
@@ -1208,11 +1210,114 @@
                     "HDNET\\Standard\\": "src/"
                 }
             },
+            "scripts": {
+                "post-autoload-dump": [
+                    "@captainhook-setup"
+                ],
+                "yaml-lint": [
+                    "yaml-lint .lando.yml"
+                ],
+                "captainhook-setup": [
+                    "captainhook install --force"
+                ],
+                "phpstan": [
+                    "phpstan analyse src config --level 5"
+                ],
+                "phpstan-ci": [
+                    "@phpstan --no-interaction --no-ansi --memory-limit=2G --error-format=junit --no-progress"
+                ],
+                "php-cs-fixer": [
+                    "php-cs-fixer fix"
+                ],
+                "php-cs-fixer-ci": [
+                    "@php-cs-fixer --dry-run --no-ansi --show-progress=none --diff --format=junit"
+                ],
+                "psalm": [
+                    "psalm"
+                ],
+                "psalm-ci": [
+                    "@psalm --no-cache --no-file-cache --no-progress --memory-limit=2G --output-format=junit"
+                ],
+                "rector": [
+                    "rector"
+                ],
+                "code": [
+                    "@yaml-lint",
+                    "@rector",
+                    "@phpstan",
+                    "@php-cs-fixer",
+                    "@psalm --no-cache"
+                ],
+                "code:check": [
+                    "@yaml-lint",
+                    "@phpstan",
+                    "@php-cs-fixer --dry-run",
+                    "@psalm"
+                ]
+            },
             "license": [
                 "GPL-2.0-or-later"
             ],
             "description": "HDNET Code Standard",
-            "time": "2021-10-13T09:03:46+00:00"
+            "time": "2021-10-25T09:52:31+00:00"
+        },
+        {
+            "name": "j13k/yaml-lint",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/j13k/yaml-lint.git",
+                "reference": "e3b6e970e1a341a2e09fc3b47188ce7f648ef8e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/j13k/yaml-lint/zipball/e3b6e970e1a341a2e09fc3b47188ce7f648ef8e8",
+                "reference": "e3b6e970e1a341a2e09fc3b47188ce7f648ef8e8",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/yaml": "^2|^3|^4|^5"
+            },
+            "bin": [
+                "bin/yaml-lint"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "J13k\\YamlLint\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Fitzpatrick",
+                    "homepage": "http://github.com/j13k"
+                }
+            ],
+            "description": "A compact command line utility for checking YAML file syntax",
+            "homepage": "https://github.com/j13k/yaml-lint",
+            "keywords": [
+                "cli",
+                "lint",
+                "symfony",
+                "syntax",
+                "utility",
+                "yaml",
+                "yml"
+            ],
+            "support": {
+                "issues": "https://github.com/j13k/yaml-lint/issues",
+                "source": "https://github.com/j13k/yaml-lint/tree/1.1.4"
+            },
+            "time": "2021-03-11T08:48:25+00:00"
         },
         {
             "name": "jawira/case-converter",
@@ -4047,6 +4152,81 @@
                 }
             ],
             "time": "2021-08-26T08:00:08+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v5.3.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "4500fe63dc9c6ffc32d3b1cb0448c329f9c814b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/4500fe63dc9c6ffc32d3b1cb0448c329f9c814b7",
+                "reference": "4500fe63dc9c6ffc32d3b1cb0448c329f9c814b7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "conflict": {
+                "symfony/console": "<4.4"
+            },
+            "require-dev": {
+                "symfony/console": "^4.4|^5.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Loads and dumps YAML files",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/yaml/tree/v5.3.6"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-07-29T06:20:01+00:00"
         },
         {
             "name": "vimeo/psalm",

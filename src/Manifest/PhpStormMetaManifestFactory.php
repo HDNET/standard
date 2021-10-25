@@ -10,7 +10,7 @@ class PhpStormMetaManifestFactory implements ManifestFactoryInterface
 {
     public function process(Composer $composer, array $manifest): array
     {
-        $manifest['copy-from-package']['.phpstorm.meta.php'] = '%ROOT_DIR%';
+        $manifest['copy-from-package']['.phpstorm.meta.php'] = '.phpstorm.meta.php';
 
         return $manifest;
     }

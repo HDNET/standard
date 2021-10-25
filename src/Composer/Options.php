@@ -24,7 +24,8 @@ class Options
             'src-dir' => 'src',
             'var-dir' => 'var',
             'public-dir' => 'public',
-            'root-dir' => $extra['symfony']['root-dir'] ?? '.',
+            // TODO: Is this really save with the vendor-dir backwards thing?
+            'root-dir' => $extra['symfony']['root-dir'] ?? $composer->getConfig()->get('vendor-dir').\DIRECTORY_SEPARATOR.'..'.\DIRECTORY_SEPARATOR,
         ], $extra);
     }
 

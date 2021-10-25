@@ -24,7 +24,7 @@ class Plugin implements PluginInterface
     protected Composer $composer;
     protected IOInterface $io;
     protected Config $config;
-    protected array $manifest;
+    protected array $manifest = [];
     protected Options $options;
     protected PackageInterface $pluginPackage;
     protected Configurator $configurator;

@@ -16,8 +16,7 @@
         "type": "vcs",
         "url": "../"
     }],
-    "require": {},
     "require-dev": {
-        "hdnet/standard": "dev-main"
+        "hdnet/standard": "dev-flex-like-standard"
     }
 }

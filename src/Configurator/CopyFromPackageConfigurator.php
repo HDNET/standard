@@ -26,7 +26,10 @@ class CopyFromPackageConfigurator extends AbstractConfigurator
 
     private function copyFiles(array $manifest, string $from, array $options): void
     {
-        $to = $options['root-dir'] ?? '.';
+        $to = $options['root-dir'];
+        if (!\is_string($to)) {
+            throw new \RuntimeException('Root dir not found!');
+        }
         foreach ($manifest as $source => $target) {
             $target = $this->options->expandTargetDir($target);
             if (str_ends_with($source, '/')) {

@@ -1,0 +1,23 @@
+{
+    "name": "hdnet/test-project",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Hdnet\\TestProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Florian Patruck",
+            "email": "florian.patruck@hdnet.de"
+        }
+    ],
+    "repositories": [{
+        "type": "vcs",
+        "url": "../"
+    }],
+    "require": {},
+    "require-dev": {
+        "hdnet/standard": "dev-main"
+    }
+}

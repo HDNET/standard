@@ -574,16 +574,16 @@
         },
         {
             "name": "composer/semver",
-            "version": "3.2.5",
+            "version": "3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "31f3ea725711245195f62e54ffa402d8ef2fdba9"
+                "reference": "83e511e247de329283478496f7a1e114c9517506"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/31f3ea725711245195f62e54ffa402d8ef2fdba9",
-                "reference": "31f3ea725711245195f62e54ffa402d8ef2fdba9",
+                "url": "https://api.github.com/repos/composer/semver/zipball/83e511e247de329283478496f7a1e114c9517506",
+                "reference": "83e511e247de329283478496f7a1e114c9517506",
                 "shasum": ""
             },
             "require": {
@@ -635,7 +635,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/semver/issues",
-                "source": "https://github.com/composer/semver/tree/3.2.5"
+                "source": "https://github.com/composer/semver/tree/3.2.6"
             },
             "funding": [
                 {
@@ -651,7 +651,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-24T12:41:47+00:00"
+            "time": "2021-10-25T11:34:17+00:00"
         },
         {
             "name": "composer/spdx-licenses",
@@ -1182,7 +1182,7 @@
             "source": {
                 "type": "git",
                 "url": "../",
-                "reference": "85ea2ae0436f064f189213dc3a9ca2e280f2c786"
+                "reference": "4f1e9bc91910033c43677b969849c6e225a07cb0"
             },
             "require": {
                 "captainhook/captainhook": "^5.10",
@@ -1259,7 +1259,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "HDNET Code Standard",
-            "time": "2021-10-25T09:52:31+00:00"
+            "time": "2021-10-25T13:20:48+00:00"
         },
         {
             "name": "j13k/yaml-lint",

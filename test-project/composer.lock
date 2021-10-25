@@ -1182,7 +1182,7 @@
             "source": {
                 "type": "git",
                 "url": "../",
-                "reference": "4f1e9bc91910033c43677b969849c6e225a07cb0"
+                "reference": "f0dc7a96f0a5fc5b0b284d7b2ff41f1fcc080e33"
             },
             "require": {
                 "captainhook/captainhook": "^5.10",
@@ -1259,7 +1259,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "HDNET Code Standard",
-            "time": "2021-10-25T13:20:48+00:00"
+            "time": "2021-10-25T15:05:12+00:00"
         },
         {
             "name": "j13k/yaml-lint",

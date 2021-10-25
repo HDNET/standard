@@ -75,6 +75,7 @@ class Plugin implements PluginInterface
 
     protected function setupManifest(): void
     {
+        $this->manifest = [];
         $extra = $this->composer->getPackage()->getExtra();
         if (!isset($extra['hdnet-standard'])) {
             $this->io->info('HDNET-Standard: No configuration file specified. Using the default path.');

@@ -6,6 +6,7 @@ namespace HDNET\Standard\Composer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
+use Composer\Package\PackageInterface;
 use HDNET\Standard\Configurator\AbstractConfigurator;
 use HDNET\Standard\Configurator\ComposerScriptsConfigurator;
 use HDNET\Standard\Configurator\CopyFromPackageConfigurator;
@@ -16,7 +17,7 @@ class Configurator
     protected array $configurators;
     protected array $cache = [];
 
-    public function __construct(protected Composer $composer, protected IOInterface $io, protected Options $options)
+    public function __construct(protected Composer $composer, protected IOInterface $io, protected Options $options, protected PackageInterface $pluginPackage)
     {
         // ordered list of configurators
         $this->configurators = [
@@ -57,7 +58,7 @@ class Configurator
 
         $class = $this->configurators[$key];
 
-        $configurator = new $class($this->composer, $this->io, $this->options);
+        $configurator = new $class($this->composer, $this->io, $this->options, $this->pluginPackage);
 
         if (!($configurator instanceof AbstractConfigurator)) {
             throw new \RuntimeException('The class needs to be an AbstractConfigurator');

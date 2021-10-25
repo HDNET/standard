@@ -6,16 +6,16 @@ namespace HDNET\Standard\Composer;
 
 use Composer\Composer;
 use Composer\Config;
-use Composer\EventDispatcher\EventSubscriberInterface;
-use Composer\Installer\PackageEvent;
-use Composer\Installer\PackageEvents;
 use Composer\IO\IOInterface;
+use Composer\Package\PackageInterface;
 use Composer\Plugin\PluginInterface;
+use Composer\Semver\Constraint\MatchNoneConstraint;
 use HDNET\Standard\Manifest\ManifestFactoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class Plugin implements PluginInterface, EventSubscriberInterface
+class Plugin implements PluginInterface
 {
+    public \Symfony\Component\EventDispatcher\EventDispatcher $dispatcher;
     /**
      * @const string
      */
@@ -24,70 +24,53 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     protected Composer $composer;
     protected IOInterface $io;
     protected Config $config;
-    protected EventDispatcher $dispatcher;
-    protected Configurator $configurator;
     protected array $manifest;
     protected Options $options;
+    protected PackageInterface $pluginPackage;
+    protected Configurator $configurator;
 
-    public function activate(Composer $composer, IOInterface $io): void
+    protected function setup(Composer $composer, IOInterface $io): void
     {
         $this->composer = $composer;
         $this->io = $io;
         $this->config = $composer->getConfig();
         $this->dispatcher = new EventDispatcher();
         $this->options = new Options($composer, $io);
-        $this->configurator = new Configurator($composer, $io, $this->options);
+        $pluginPackage = $this->composer->getRepositoryManager()->getLocalRepository()->findPackage(self::PACKAGE_NAME, '*');
+        if (!($pluginPackage instanceof PackageInterface)) {
+            $pluginPackage = $this->composer->getRepositoryManager()->findPackage(self::PACKAGE_NAME, new MatchNoneConstraint());
 
-        echo $this->composer->getPackage()->getName();
-        exit;
+            if (!($pluginPackage instanceof PackageInterface)) {
+                throw new \RuntimeException('The hdnet/standard package could not be retrieved!');
+            }
+        }
+        $this->pluginPackage = $pluginPackage;
+        $this->configurator = new Configurator($composer, $io, $this->options, $this->pluginPackage);
+    }
+
+    public function activate(Composer $composer, IOInterface $io): void
+    {
+        $this->setup($composer, $io);
+
+        $this->io->info('Install of the hdnet/standard package');
+        $this->setupManifest();
+        $this->installHDNETStandard();
     }
 
     public function deactivate(Composer $composer, IOInterface $io): void
     {
+        $this->setup($composer, $io);
+
+        $this->io->info('Update of the hdnet/standard package');
+        $this->setupManifest();
+        $this->uninstallHDNETStandard();
     }
 
     public function uninstall(Composer $composer, IOInterface $io): void
     {
-    }
+        $this->setup($composer, $io);
 
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            PackageEvents::POST_PACKAGE_INSTALL => 'installPackage',
-            PackageEvents::POST_PACKAGE_UPDATE => 'updatePackage',
-            PackageEvents::POST_PACKAGE_UNINSTALL => 'uninstallPackage',
-        ];
-    }
-
-    public function installPackage(PackageEvent $event): void
-    {
-        if (self::PACKAGE_NAME !== $event->getName()) {
-            return;
-        }
-
-        $this->io->info('Install of the standard package');
-        $this->installHDNETStandard();
-    }
-
-    public function updatePackage(PackageEvent $event): void
-    {
-        if (self::PACKAGE_NAME !== $event->getName()) {
-            return;
-        }
-
-        $this->io->info('Update of the standard package');
-        $this->uninstallHDNETStandard();
-        $this->installHDNETStandard();
-    }
-
-    public function uninstallPackage(PackageEvent $event): void
-    {
-        if (self::PACKAGE_NAME !== $event->getName()) {
-            return;
-        }
-
-        $this->io->info('Update of the standard package');
-        $this->uninstallHDNETStandard();
+        $this->io->info('Uninstallation of the hdnet/standard package.');
     }
 
     protected function setupManifest(): void
@@ -96,7 +79,8 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         if (!isset($extra['hdnet-standard'])) {
             $this->io->info('HDNET-Standard: No configuration file specified. Using the default path.');
         }
-        $manifestFactoryFilepath = $extra['hdnet-standard'] ?? $this->composer->getInstallationManager()->getInstallPath($this->composer->getPackage()).\DIRECTORY_SEPARATOR.'hdnet-standard.php';
+        $manifestFactoryFilepath = $extra['hdnet-standard'] ?? $this->composer->getInstallationManager()->getInstallPath($this->pluginPackage)
+            .\DIRECTORY_SEPARATOR.'config'.\DIRECTORY_SEPARATOR.'manifest-factory.php';
         $manifestFactoryClassMapping = require $manifestFactoryFilepath;
 
         foreach ($manifestFactoryClassMapping as $name => $class) {

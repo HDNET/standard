@@ -11,7 +11,7 @@ class CopyFromPackageConfigurator extends AbstractConfigurator
     public function configure($config, array $options = []): void
     {
         $this->write('Copying files from package');
-        $packageDir = $this->composer->getInstallationManager()->getInstallPath($this->composer->getPackage());
+        $packageDir = $this->composer->getInstallationManager()->getInstallPath($this->pluginPackage);
         $options = array_merge($this->options->toArray(), $options);
 
         $this->copyFiles($config, $packageDir, $options);
@@ -20,7 +20,7 @@ class CopyFromPackageConfigurator extends AbstractConfigurator
     public function unconfigure($config): void
     {
         $this->write('Removing files from package');
-        $packageDir = $this->composer->getInstallationManager()->getInstallPath($this->composer->getPackage());
+        $packageDir = $this->composer->getInstallationManager()->getInstallPath($this->pluginPackage);
         $this->removeFiles($config, $packageDir, $this->options->get('root-dir'));
     }
 

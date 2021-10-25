@@ -6,6 +6,7 @@ namespace HDNET\Standard\Configurator;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
+use Composer\Package\PackageInterface;
 use HDNET\Standard\Composer\Options;
 use HDNET\Standard\Composer\Path;
 
@@ -22,7 +23,7 @@ abstract class AbstractConfigurator
     protected const NAME = 'HDNET-STANDARD';
     protected Path $path;
 
-    public function __construct(protected Composer $composer, protected IOInterface $io, protected Options $options)
+    public function __construct(protected Composer $composer, protected IOInterface $io, protected Options $options, protected PackageInterface $pluginPackage)
     {
         $this->path = new Path($options->get('root-dir'));
     }

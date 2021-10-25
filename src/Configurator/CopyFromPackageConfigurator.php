@@ -73,14 +73,15 @@ class CopyFromPackageConfigurator extends AbstractConfigurator
         $iterator = $this->createSourceIterator($source, \RecursiveIteratorIterator::SELF_FIRST);
 
         foreach ($iterator as $item) {
-            $targetPath = $this->path->concatenate([$target, $item->getSubPathName()]);
+            /** @var RecursiveDirectoryIterator $iterator */
+            $targetPath = $this->path->concatenate([$target, $iterator->getSubPathname()]);
             if ($item->isDir()) {
                 if (!is_dir($targetPath)) {
                     mkdir($targetPath);
                     $this->write(sprintf('  Created <fg=green>"%s"</>', $this->path->relativize($targetPath)));
                 }
             } elseif ($overwrite || !file_exists($targetPath)) {
-                $this->copyFile($item, $targetPath, $options);
+                $this->copyFile($this->path->concatenate([$source, $iterator->getSubPathname()]), $targetPath, $options);
             }
         }
     }
@@ -106,7 +107,8 @@ class CopyFromPackageConfigurator extends AbstractConfigurator
         $iterator = $this->createSourceIterator($source, \RecursiveIteratorIterator::CHILD_FIRST);
 
         foreach ($iterator as $item) {
-            $targetPath = $this->path->concatenate([$target, $item->getSubPathName()]);
+            /** @var RecursiveDirectoryIterator $iterator */
+            $targetPath = $this->path->concatenate([$target, $iterator->getSubPathname()]);
             if ($item->isDir()) {
                 // that removes the dir only if it is empty
                 @rmdir($targetPath);

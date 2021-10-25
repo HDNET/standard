@@ -12,9 +12,6 @@ class StaticAnalysisComposerScriptsManifestFactory implements ManifestFactoryInt
     {
         return [
             'composer-scripts' => [
-                'post-autoload-dump' => [
-                    '@captainhook-setup',
-                ],
                 'yaml-lint' => [
                     'yaml-lint .lando.yml',
                 ],

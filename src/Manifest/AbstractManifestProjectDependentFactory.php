@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace HDNET\Standard\Manifest;
 
 use Composer\Composer;
-use Composer\Package\Package;
 
-// TODO: Can be do this even better? (add namespace to current class name)
+// TODO: Can be do this even better? (add namespace to current class name?)
 abstract class AbstractManifestProjectDependentFactory implements ManifestFactoryInterface
 {
     abstract protected function getSymfonyManifestFactoryClass(): string;
@@ -16,17 +15,18 @@ abstract class AbstractManifestProjectDependentFactory implements ManifestFactor
 
     public function process(Composer $composer, array $manifest): array
     {
-        $symfonyPackage = new Package('symfony/flex', '*', '*');
+        $isTypo3CorePackageInstalled = false;
+        foreach ($composer->getPackage()->getRequires() as $require) {
+            if ('typo3/cms-core' === $require->getTarget()) {
+                $isTypo3CorePackageInstalled = true;
+                break;
+            }
+        }
 
-        $symfonyInstalled = $composer->getInstallationManager()->isPackageInstalled(
-            $composer->getRepositoryManager()->getLocalRepository(),
-            $symfonyPackage
-        );
-
-        if ($symfonyInstalled) {
-            $manifestFactoryClass = $this->getSymfonyManifestFactoryClass();
-        } else {
+        if ($isTypo3CorePackageInstalled) {
             $manifestFactoryClass = $this->getTypo3ManifestFactoryClass();
+        } else {
+            $manifestFactoryClass = $this->getSymfonyManifestFactoryClass();
         }
 
         return (new $manifestFactoryClass())->process($composer, $manifest);

@@ -18,6 +18,8 @@ class GitignoreManifestFactory implements ManifestFactoryInterface
                 '!/.idea/icon.svg',
                 '/.php-cs-fixer.cache',
                 'nbproject',
+                '/var/*',
+                '/vendor',
             ],
         ];
     }

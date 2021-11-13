@@ -1,5 +1,5 @@
 {
-    "name": "hdnet/test-project",
+    "name": "hdnet/test-project-typo3",
     "type": "project",
     "autoload": {
         "psr-4": {
@@ -17,7 +17,8 @@
         "url": "../"
     }],
     "require-dev": {
-        "hdnet/standard": "dev-flex-like-standard"
+        "hdnet/standard": "dev-flex-like-standard",
+        "typo3/cms-core": "^11.5.x-dev"
     },
     "scripts": {
         "yaml-lint": ["yaml-lint .lando.yml"],

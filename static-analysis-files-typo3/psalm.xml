@@ -7,8 +7,8 @@
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="src"/>
-        <directory name="config" />
+        <directory name="public/typo3conf/ext/site/Classes"/>
+        <directory name="public/typo3conf/ext/site/Tests"/>
     </projectFiles>
 
     <issueHandlers>

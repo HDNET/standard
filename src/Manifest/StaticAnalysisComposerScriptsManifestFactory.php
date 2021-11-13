@@ -4,55 +4,18 @@ declare(strict_types=1);
 
 namespace HDNET\Standard\Manifest;
 
-use Composer\Composer;
+use HDNET\Standard\Manifest\Symfony\StaticAnalysisComposerScriptsManifestFactory as SymfonyStaticAnalysisComposerScriptsManifestFactory;
+use HDNET\Standard\Manifest\Typo3\StaticAnalysisComposerScriptsManifestFactory as Typo3StaticAnalysisComposerScriptsManifestFactory;
 
-class StaticAnalysisComposerScriptsManifestFactory implements ManifestFactoryInterface
+class StaticAnalysisComposerScriptsManifestFactory extends AbstractManifestProjectDependentFactory
 {
-    public function process(Composer $composer, array $manifest): array
+    protected function getSymfonyManifestFactoryClass(): string
     {
-        return [
-            'composer-scripts' => [
-                'yaml-lint' => [
-                    'yaml-lint .lando.yml',
-                ],
-                'captainhook-setup' => [
-                    'captainhook install --force',
-                ],
-                'phpstan' => [
-                    'phpstan analyse src config --level 5',
-                ],
-                'phpstan-ci' => [
-                    '@phpstan --no-interaction --no-ansi --memory-limit=2G --error-format=junit --no-progress',
-                ],
-                'php-cs-fixer' => [
-                    'php-cs-fixer fix',
-                ],
-                'php-cs-fixer-ci' => [
-                    '@php-cs-fixer --dry-run --no-ansi --show-progress=none --diff --format=junit',
-                ],
-                'psalm' => [
-                    'psalm',
-                ],
-                'psalm-ci' => [
-                    '@psalm --no-cache --no-file-cache --no-progress --memory-limit=2G --output-format=junit',
-                ],
-                'rector' => [
-                    'rector',
-                ],
-                'code' => [
-                    '@yaml-lint',
-                    '@rector',
-                    '@phpstan',
-                    '@php-cs-fixer',
-                    '@psalm --no-cache',
-                ],
-                'code:check' => [
-                    '@yaml-lint',
-                    '@phpstan',
-                    '@php-cs-fixer --dry-run',
-                    '@psalm',
-                ],
-            ],
-        ];
+        return SymfonyStaticAnalysisComposerScriptsManifestFactory::class;
+    }
+
+    protected function getTypo3ManifestFactoryClass(): string
+    {
+        return Typo3StaticAnalysisComposerScriptsManifestFactory::class;
     }
 }

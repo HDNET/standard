@@ -1,0 +1,11 @@
+parameters:
+  level: 5
+  tmpDir: var/cache/.phpstan
+  paths:
+    - src/
+  symfony:
+    container_xml_path: '%rootDir%/../../../var/cache/dev/srcApp_KernelDevDebugContainer.xml'
+    console_application_loader: 'tests/Static/console-application.php'
+  doctrine:
+    repositoryClass: Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository
+    objectManagerLoader: 'tests/Static/object-manager.php'

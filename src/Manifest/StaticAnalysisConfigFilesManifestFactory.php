@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace HDNET\Standard\Manifest;
 
-use Composer\Composer;
+use HDNET\Standard\Manifest\Symfony\StaticAnalysisConfigFilesManifestFactory as SymfonyStaticAnalysisConfigFilesManifestFactory;
+use HDNET\Standard\Manifest\Typo3\StaticAnalysisConfigFilesManifestFactory as Typo3StaticAnalysisConfigFilesManifestFactory;
 
-class StaticAnalysisConfigFilesManifestFactory implements ManifestFactoryInterface
+class StaticAnalysisConfigFilesManifestFactory extends AbstractManifestProjectDependentFactory
 {
-    public function process(Composer $composer, array $manifest): array
+    protected function getSymfonyManifestFactoryClass(): string
     {
-        return [
-            'copy-from-package' => [
-                'static-analysis-files/' => '',
-            ],
-        ];
+        return SymfonyStaticAnalysisConfigFilesManifestFactory::class;
+    }
+
+    protected function getTypo3ManifestFactoryClass(): string
+    {
+        return Typo3StaticAnalysisConfigFilesManifestFactory::class;
     }
 }

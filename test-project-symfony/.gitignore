@@ -1,0 +1,10 @@
+
+###> HDNET-STANDARD ###
+.DS_Store
+/.idea/*
+!/.idea/icon.svg
+/.php-cs-fixer.cache
+nbproject
+/var/*
+/vendor
+###< HDNET-STANDARD ###

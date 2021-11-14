@@ -1,8 +1,8 @@
 <?php
 
 $finder = (new PhpCsFixer\Finder())
-    ->in('src')
-    ->in('config')
+    ->in('public/typo3conf/ext/site/Classes')
+    ->in('public/typo3conf/ext/site/Tests')
     ->ignoreVCS(true)
 ;
 

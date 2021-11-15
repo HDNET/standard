@@ -10,9 +10,9 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
     $parameters->set(Option::PATHS, [
-        __DIR__ . \DIRECTORY_SEPARATOR . 'src',
-        __DIR__ . \DIRECTORY_SEPARATOR . 'config',
+        __DIR__.\DIRECTORY_SEPARATOR.'src',
+        __DIR__.\DIRECTORY_SEPARATOR.'config',
     ]);
 
-    RectorPreSet::load($containerConfigurator, PreSetInterface::SYSTEM_SYMFONY);
+    RectorPreSet::load($containerConfigurator, PreSetInterface::SYSTEM_TYPO3);
 };

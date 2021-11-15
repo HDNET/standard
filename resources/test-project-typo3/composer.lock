@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbec93f369634c9fd6b73662aab2fdad",
+    "content-hash": "b3cdf5ab2e653719d9b02edc3ee506dd",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -4575,12 +4575,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3-CMS/core.git",
-                "reference": "366df1589bb0a76f384a3b71e6366cb6e462eda6"
+                "reference": "1b74a7f462e78a7f8949fc640df91ccb575f9528"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3-CMS/core/zipball/366df1589bb0a76f384a3b71e6366cb6e462eda6",
-                "reference": "366df1589bb0a76f384a3b71e6366cb6e462eda6",
+                "url": "https://api.github.com/repos/TYPO3-CMS/core/zipball/1b74a7f462e78a7f8949fc640df91ccb575f9528",
+                "reference": "1b74a7f462e78a7f8949fc640df91ccb575f9528",
                 "shasum": ""
             },
             "require": {
@@ -4710,7 +4710,7 @@
                 "issues": "https://forge.typo3.org",
                 "source": "https://github.com/typo3/typo3"
             },
-            "time": "2021-11-12T20:00:26+00:00"
+            "time": "2021-11-13T17:44:58+00:00"
         },
         {
             "name": "typo3/html-sanitizer",
@@ -5925,11 +5925,11 @@
         },
         {
             "name": "hdnet/standard",
-            "version": "dev-flex-like-standard",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "../",
-                "reference": "e0c539c37ae25179b7a1d51347c3dfe8bd0c51ca"
+                "reference": "ece953ba33c626b15e7622a637895ba035a55d6a"
             },
             "require": {
                 "captainhook/captainhook": "^5.10",
@@ -6006,7 +6006,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "HDNET Code Standard",
-            "time": "2021-11-13T11:48:58+00:00"
+            "time": "2021-11-14T20:59:58+00:00"
         },
         {
             "name": "j13k/yaml-lint",

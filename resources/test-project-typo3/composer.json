@@ -14,13 +14,13 @@
     ],
     "repositories": [{
         "type": "vcs",
-        "url": "../"
+        "url": "../../"
     }],
     "require": {
         "typo3/cms-core": "^11.5.x-dev"
     },
     "require-dev": {
-        "hdnet/standard": "dev-flex-like-standard"
+        "hdnet/standard": "dev-main"
     },
     "scripts": {
         "typo3-cms-scripts": ["typo3cms install:fixfolderstructure"],

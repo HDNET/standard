@@ -14,13 +14,13 @@
     ],
     "repositories": [{
         "type": "vcs",
-        "url": "../"
+        "url": "../../"
     }],
     "require": {
         "symfony/flex": "^v1.17.2"
     },
     "require-dev": {
-        "hdnet/standard": "dev-flex-like-standard"
+        "hdnet/standard": "dev-main"
     },
     "scripts": {
         "cache:clear": "symfony-cmd",

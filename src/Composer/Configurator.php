@@ -19,10 +19,12 @@ class Configurator
 
     public function __construct(protected Composer $composer, protected IOInterface $io, protected Options $options, protected PackageInterface $pluginPackage)
     {
+        // $composer->getPackage()->getExtra()
+        // get configuration
         // ordered list of configurators
         $this->configurators = [
             'copy-from-package' => CopyFromPackageConfigurator::class,
-            // 'env' => Configurator\EnvConfigurator::class,
+            // 'env' => EnvConfigurator::class,
             'composer-scripts' => ComposerScriptsConfigurator::class,
             'gitignore' => GitignoreConfigurator::class,
         ];

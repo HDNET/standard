@@ -1,7 +1,7 @@
 {
 	"name": "hdnet/standard",
 	"type": "composer-plugin",
-	"description" : "HDNET Code Standard",
+	"description" : "HDNET code style and workflow standards for backend projects.",
 	"license": "GPL-2.0-or-later",
 	"version": "0.0.1",
 	"autoload": {
@@ -10,6 +10,7 @@
 		}
 	},
 	"require": {
+		"php": "^8.0",
 		"composer-plugin-api": "^2.0",
 		"captainhook/captainhook": "^5.10",
 		"friendsofphp/php-cs-fixer": "^3.1",
@@ -17,7 +18,8 @@
 		"rector/rector": "^0.11",
 		"vimeo/psalm": "^4.10",
 		"j13k/yaml-lint": "^1.1",
-		"phpstan/phpstan": "^0.12.99"
+		"phpstan/phpstan": "^0.12.99",
+		"roave/security-advisories": "dev-latest"
 	},
     "require-dev": {
         "composer/composer": "^2.0"

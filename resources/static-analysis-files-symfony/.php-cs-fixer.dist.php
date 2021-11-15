@@ -4,8 +4,7 @@ use HDNET\Standard\PreSet\PhpCsFixerPreSet;
 use HDNET\Standard\PreSet\PreSetInterface;
 
 $finder = (new PhpCsFixer\Finder())
-    ->in('src')
-    ->in('config')
-    ->ignoreVCS(true);
+    ->in(__DIR__)
+    ->exclude('var');
 
 return PhpCsFixerPreSet::get(PreSetInterface::SYSTEM_SYMFONY)->setFinder($finder);

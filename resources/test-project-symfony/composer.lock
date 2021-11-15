@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1cdbf43ef6877f4b3c77a136ebb4e24f",
+    "content-hash": "a75ad68fced3005a0730cac44a78771f",
     "packages": [
         {
             "name": "symfony/flex",
@@ -1247,11 +1247,11 @@
         },
         {
             "name": "hdnet/standard",
-            "version": "dev-flex-like-standard",
+            "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "../",
-                "reference": "e0c539c37ae25179b7a1d51347c3dfe8bd0c51ca"
+                "url": "../../",
+                "reference": "ece953ba33c626b15e7622a637895ba035a55d6a"
             },
             "require": {
                 "captainhook/captainhook": "^5.10",
@@ -1328,7 +1328,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "HDNET Code Standard",
-            "time": "2021-11-13T11:48:58+00:00"
+            "time": "2021-11-14T20:59:58+00:00"
         },
         {
             "name": "j13k/yaml-lint",

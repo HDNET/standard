@@ -13,7 +13,7 @@ class StaticAnalysisConfigFilesManifestFactory implements ManifestFactoryInterfa
     {
         return [
             'copy-from-package' => [
-                'static-analysis-files-typo3/' => '',
+                'resources/static-analysis-files-typo3/' => '',
             ],
         ];
     }

@@ -13,7 +13,7 @@ class StaticAnalysisConfigFilesManifestFactory implements ManifestFactoryInterfa
     {
         return [
             'copy-from-package' => [
-                'static-analysis-files-symfony/' => '',
+                'resources/static-analysis-files-symfony/' => '',
             ],
         ];
     }

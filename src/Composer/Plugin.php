@@ -8,14 +8,18 @@ use Composer\Composer;
 use Composer\Config;
 use Composer\IO\IOInterface;
 use Composer\Package\PackageInterface;
+use Composer\Plugin\Capability\CommandProvider;
+use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 use Composer\Semver\Constraint\MatchNoneConstraint;
+use HDNET\Standard\Command\PhpCsFixerCommand;
 use HDNET\Standard\Manifest\ManifestFactoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class Plugin implements PluginInterface
+class Plugin implements PluginInterface, Capable, CommandProvider
 {
-    public \Symfony\Component\EventDispatcher\EventDispatcher $dispatcher;
+    public EventDispatcher $dispatcher;
+
     /**
      * @const string
      */
@@ -80,6 +84,9 @@ class Plugin implements PluginInterface
         if (!isset($extra['hdnet-standard'])) {
             $this->io->info('HDNET-Standard: No configuration file specified. Using the default path.');
         }
+
+        // @todo Need to change the path?
+
         $manifestFactoryFilepath = $extra['hdnet-standard'] ?? $this->composer->getInstallationManager()->getInstallPath($this->pluginPackage)
             .\DIRECTORY_SEPARATOR.'config'.\DIRECTORY_SEPARATOR.'manifest-factory.php';
         $manifestFactoryClassMapping = require $manifestFactoryFilepath;
@@ -102,5 +109,19 @@ class Plugin implements PluginInterface
     protected function uninstallHDNETStandard(): void
     {
         $this->configurator->unconfigure($this->manifest);
+    }
+
+    public function getCapabilities()
+    {
+        return [
+           CommandProvider::class => static::class,
+       ];
+    }
+
+    public function getCommands()
+    {
+        return [
+            new PhpCsFixerCommand(),
+        ];
     }
 }

@@ -1,4 +1,9 @@
 {
+  "config": {
+    "run-mode": "docker",
+    "run-exec": "lando",
+    "run-path": "captainhook"
+  },
   "commit-msg": {
     "enabled": true,
     "actions": [
@@ -15,7 +20,7 @@
     "enabled": true,
     "actions": [
       {
-        "action": "(lando version > /dev/null 2>&1 || exit 0) && (lando pre-commit || exit 1)"
+        "action": "composer code:check"
       }
     ]
   },

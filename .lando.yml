@@ -20,7 +20,3 @@ tooling:
     service: appservice
     description: Do not start xdebug with request
     cmd: sed -i 's/xdebug.start_with_request=yes/xdebug.start_with_request=no/g' /app/.lando/config/php/php.ini
-  pre-commit:
-    description: Run pre commit commands
-    service: appservice
-    cmd: composer code:check

@@ -50,5 +50,11 @@
         "rector": ["rector"],
         "code": ["@yaml-lint", "@rector", "@phpstan", "@php-cs-fixer", "@psalm --no-cache"],
         "code:check": ["@yaml-lint", "@phpstan", "@php-cs-fixer --dry-run", "@psalm"]
+    },
+    "config": {
+        "allow-plugins": {
+            "hdnet/standard": true,
+            "symfony/flex": true
+        }
     }
 }

@@ -10,10 +10,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class PhpCsFixerCommand extends BaseCommand
 {
-    protected static $defaultName = 'php-cs-fixer';
+    protected static $defaultName = 'hdnet:php-cs-fixer';
 
     protected function configure(): void
     {
+        $this->setDescription('Execute PHP CS Fixer with the right configuration');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

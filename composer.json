@@ -19,7 +19,7 @@
 		"vimeo/psalm": "^4.22",
 		"j13k/yaml-lint": "^1.1",
 		"phpstan/phpstan": "^1.5",
-		"roave/security-advisories": "dev-latest"
+		"roave/security-advisories": "dev-latest as 1.0.0"
 	},
     "require-dev": {
         "composer/composer": "^2.0"

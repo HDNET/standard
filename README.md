@@ -4,10 +4,11 @@
 
 ## Tools
 
-- Check against security-advisories
+- `roave/security-advisories` - Check against security-advisories
 - Rector
 - PHP CS Fixer
 - Captainhook
+- PHPStan
 
 ## Installation
 

@@ -3,7 +3,7 @@
 	"type": "composer-plugin",
 	"description" : "HDNET code style and workflow standards for backend projects.",
 	"license": "GPL-2.0-or-later",
-	"version": "0.0.1",
+	"minimum-stability": "stable",
 	"autoload": {
 		"psr-4": {
 			"HDNET\\Standard\\": "src/"
@@ -19,7 +19,7 @@
 		"vimeo/psalm": "^4.22",
 		"j13k/yaml-lint": "^1.1",
 		"phpstan/phpstan": "^1.5",
-		"roave/security-advisories": "dev-latest as 1.0.0"
+		"roave/security-advisories": "dev-latest@dev"
 	},
     "require-dev": {
         "composer/composer": "^2.0"

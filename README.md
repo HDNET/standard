@@ -4,7 +4,6 @@
 
 ## Tools
 
-- `roave/security-advisories` - Check against security-advisories
 - Rector
 - PHP CS Fixer
 - Captainhook

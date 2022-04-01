@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HDNET\Standard\Command\Hdnet;
+namespace HDNET\Standard\Command;
 
 use Composer\Command\BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;

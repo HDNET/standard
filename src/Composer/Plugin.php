@@ -12,7 +12,10 @@ use Composer\Plugin\Capability\CommandProvider;
 use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 use Composer\Semver\Constraint\MatchNoneConstraint;
+use HDNET\Standard\Command\Ci as Ci;
 use HDNET\Standard\Command\PhpCsFixerCommand;
+use HDNET\Standard\Command\PhpStanCommand;
+use HDNET\Standard\Command\RectorCommand;
 use HDNET\Standard\Manifest\ManifestFactoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
@@ -88,7 +91,7 @@ class Plugin implements PluginInterface, Capable, CommandProvider
         // @todo Need to change the path?
 
         $manifestFactoryFilepath = $extra['hdnet-standard'] ?? $this->composer->getInstallationManager()->getInstallPath($this->pluginPackage)
-            .\DIRECTORY_SEPARATOR.'config'.\DIRECTORY_SEPARATOR.'manifest-factory.php';
+            . \DIRECTORY_SEPARATOR . 'config' . \DIRECTORY_SEPARATOR . 'manifest-factory.php';
         $manifestFactoryClassMapping = require $manifestFactoryFilepath;
 
         foreach ($manifestFactoryClassMapping as $name => $class) {
@@ -96,7 +99,7 @@ class Plugin implements PluginInterface, Capable, CommandProvider
             if (!($manifestFactory instanceof ManifestFactoryInterface)) {
                 throw new \RuntimeException('The classes need to be ');
             }
-            $this->io->notice('Loading manifest factory '.$name);
+            $this->io->notice('Loading manifest factory ' . $name);
             $this->manifest = array_merge_recursive($this->manifest, $manifestFactory->process($this->composer, $this->manifest));
         }
     }
@@ -114,14 +117,16 @@ class Plugin implements PluginInterface, Capable, CommandProvider
     public function getCapabilities()
     {
         return [
-           CommandProvider::class => static::class,
-       ];
+            CommandProvider::class => static::class,
+        ];
     }
 
     public function getCommands()
     {
         return [
             new PhpCsFixerCommand(),
+            new PhpStanCommand(),
+            new RectorCommand(),
         ];
     }
 }
